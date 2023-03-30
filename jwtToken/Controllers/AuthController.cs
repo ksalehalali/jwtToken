@@ -54,7 +54,7 @@ namespace jwtToken.Controllers
 
             if(!VerifyPasswordHash(req.Password, user.PasswordHash, user.PasswordSalt))
             {
-                return BadRequest(" Wrong Password.");
+                return BadRequest("Wrong Password.");
             }
 
             string token = CreateToken(user);
@@ -72,7 +72,7 @@ namespace jwtToken.Controllers
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value
+                _configuration.GetSection("appSettings:Token").Value
                 ));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
